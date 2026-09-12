@@ -11,12 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Unzip project
+      - - name: Unzip project
         run: |
           unzip -o Foldveil.zip -d extracted
-          mv extracted/foldveil/* .
-          mv extracted/foldveil/.[!.]* . 2>/dev/null || true
-
+          ls -la extracted
+          SRC=$(find extracted -maxdepth 1 -mindepth 1 -type d | head -n 1)
+          echo "Found project folder: $SRC"
+          cp -r "$SRC"/. .
+          ls -la
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
