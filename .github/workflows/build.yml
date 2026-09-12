@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - - name: Unzip project
+      - name: Unzip project
         run: |
           unzip -o Foldveil.zip -d extracted
           ls -la extracted
